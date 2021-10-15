@@ -6,20 +6,42 @@ import './App.css';
 
 const App: React.FC = () => {
 
-  const [input, setInput] = useState<string | undefined>();
+  const [title, setTitle] = useState<string | undefined>();
+  const [description, setDescription] = useState<string | undefined>();
+  const [fieldTitle, setFieldTitle] = useState<string | undefined>();
+  const [fieldDescription, setFieldDescription] = useState<string | undefined>();
+  const [valueArr, setValueArr] = useState<any[] | undefined>();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(e.currentTarget.value);
+  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldTitle(e.currentTarget.value);
   }
 
-  //const handleSubmit = 
+  const handleDesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFieldDescription(e.currentTarget.value);
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setTitle(fieldTitle);
+    setDescription(fieldDescription);
+    const valueObj = {
+      title: title,
+      description: description
+    }
+    setValueArr([valueObj]);
+
+  }
   
   return (
     <div className="App">
       <Header />
       <Form 
-        data={input}
-        handleChange={handleChange}
+        title={title}
+        description={description}
+        handleTitleChange={handleTitleChange}
+        handleDesChange={handleDesChange}
+        handleSubmit={handleSubmit}
+        valueArr={valueArr}
       />
 
     </div>
