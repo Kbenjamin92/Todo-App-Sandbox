@@ -10,8 +10,9 @@ const App: React.FC = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.currentTarget.value);
-
   }
+
+  //const handleSubmit = 
   
   return (
     <div className="App">

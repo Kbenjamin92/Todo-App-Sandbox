@@ -1,5 +1,6 @@
 import React from 'react'
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 interface IProps {
     data: string | undefined;
@@ -7,14 +8,14 @@ interface IProps {
 }
 
 const Form: React.FC<IProps> = ({ 
-   handleChange,
+    handleChange,
     data
  }) => {
 
     console.log(data);
     
 return (
-        <div>
+        <form onSubmit{}>
             <TextField 
                 type='text'
                 name='title'
@@ -33,7 +34,8 @@ return (
                 required
                 id='description'
             />
-        </div>
+            <Button variant='container'>Add Todo</Button>
+        </form>
     )
 }
  
