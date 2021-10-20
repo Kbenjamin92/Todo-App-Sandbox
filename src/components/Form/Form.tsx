@@ -7,8 +7,7 @@ import Grid from '@mui/material/Grid';
 interface IProps {
     title: string | undefined;
     description: string | undefined;
-    handleTitleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleDesChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
     valueArr: any[] | undefined;
 }
@@ -17,8 +16,7 @@ const Form: React.FC<IProps> = ({
     title,
     description,
     valueArr,
-    handleTitleChange,
-    handleDesChange,
+    handleChange,
     handleSubmit,
  }) => {
 
@@ -32,9 +30,10 @@ return (
                     <TextField 
                         type='text'
                         name='title'
+                        value={title}
                         variant='filled'
                         placeholder='Title...'
-                        onChange={handleTitleChange}
+                        onChange={handleChange}
                         required
                         id='title'
                     />
@@ -42,8 +41,9 @@ return (
                         type='text'
                         name='description'
                         variant='filled'
+                        value={description}
                         placeholder='Description...'
-                        onChange={handleDesChange}
+                        onChange={handleChange}
                         required
                         id='description'
                     />
@@ -52,7 +52,7 @@ return (
             </Grid>
         </Grid>
     {
-        title && description ?
+        valueArr?
         <>
         <ol>
            <Card variant="outlined">{title}</Card>

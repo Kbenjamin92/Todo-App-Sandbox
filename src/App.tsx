@@ -4,42 +4,38 @@ import Header from './components/Header/Header'
 import './App.css';
 
 
+const initialValues = {
+  title: '',
+  description: '',
+}
+
 const App: React.FC = () => {
 
-  const [title, setTitle] = useState<string | undefined>();
-  const [description, setDescription] = useState<string | undefined>();
-  const [fieldTitle, setFieldTitle] = useState<string | undefined>();
-  const [fieldDescription, setFieldDescription] = useState<string | undefined>();
   const [valueArr, setValueArr] = useState<any[] | undefined>();
+  const [inputValues, setInputValues] = useState<any | string>(initialValues);
 
-  const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldTitle(e.currentTarget.value);
-  }
-
-  const handleDesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFieldDescription(e.currentTarget.value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    setInputValues({
+      ...inputValues,
+      [name]: value
+    });
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTitle(fieldTitle);
-    setDescription(fieldDescription);
-    const valueObj = {
-      title: title,
-      description: description
-    }
-    setValueArr([valueObj]);
+    // figure out handle submit logic
+    // setValueArr(valueArr, [inputValues]);
 
   }
-  
+
   return (
     <div className="App">
       <Header />
       <Form 
-        title={title}
-        description={description}
-        handleTitleChange={handleTitleChange}
-        handleDesChange={handleDesChange}
+        title={inputValues.title}
+        description={inputValues.description}
+        handleChange={handleChange}
         handleSubmit={handleSubmit}
         valueArr={valueArr}
       />
