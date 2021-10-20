@@ -11,7 +11,7 @@ const initialValues = {
 
 const App: React.FC = () => {
 
-  const [valueArr, setValueArr] = useState<any[] | undefined>();
+  const [valueArr, setValueArr] = useState<any[]>([]);
   const [inputValues, setInputValues] = useState<any | string>(initialValues);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,8 +24,17 @@ const App: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // figure out handle submit logic
-    // setValueArr(valueArr, [inputValues]);
+    const items = [];
+    items.push(inputValues);
+    const newArr = [...items, ...valueArr];
+    setValueArr(newArr);
+
+    setInputValues({
+      title: '',
+      description: '',
+    });
+
+    
 
   }
 

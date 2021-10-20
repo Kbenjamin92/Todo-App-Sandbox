@@ -9,7 +9,7 @@ interface IProps {
     description: string | undefined;
     handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-    valueArr: any[] | undefined;
+    valueArr: any[];
 }
 
 const Form: React.FC<IProps> = ({ 
@@ -21,7 +21,6 @@ const Form: React.FC<IProps> = ({
  }) => {
 
 
-    console.log(valueArr);
 return (
     <div>
         <Grid container spacing={2}>
@@ -51,18 +50,22 @@ return (
                 </form>
             </Grid>
         </Grid>
-    {
-        valueArr?
-        <>
-        <ol>
-           <Card variant="outlined">{title}</Card>
-           <Card variant="outlined">{description}</Card>
-       </ol>
-        </>
-        :
-        null
-    }
-       
+
+        {
+            valueArr.map((item, key) => {
+                return (
+                    <div key={key}>
+                        <ol>
+                            <Card variant="outlined">{item.title}</Card>
+                            <Card variant="outlined">{item.description}</Card>
+                        </ol>
+                    </div>
+                    
+                )
+            }
+          )
+        }
+    
     </div>
     )
 }
