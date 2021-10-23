@@ -20,12 +20,33 @@ const Form: React.FC<IProps> = ({
     handleSubmit,
  }) => {
 
+ const valueData = valueArr.map((item, key) => {
+    return (
+        <div key={key}>
+            <ol>
+                <Grid item xs={2}>
+                    <Card variant="outlined">
+                        <div>
+                            <h2>Todo's</h2>
+                            <p>{item.title}</p>
+                            <p>{item.description}</p>
+                            <Button variant='outlined'>Remove</Button>
+                        </div>
+                    </Card>
+                </Grid>
+            </ol>
+        </div>
+        )
+    }
+)
 
 return (
     <div>
         <Grid container spacing={2}>
-            <Grid item xs={12}>
+            <Grid item xs={10}>
                 <form onSubmit={handleSubmit}>
+                <Grid item xs={12}>
+
                     <TextField 
                         type='text'
                         name='title'
@@ -36,6 +57,9 @@ return (
                         required
                         id='title'
                     />
+                </Grid>
+                <Grid item xs={12}>
+
                     <TextField 
                         type='text'
                         name='description'
@@ -47,25 +71,13 @@ return (
                         id='description'
                     />
                     <Button variant='contained' type="submit">Add Todo</Button>
+                </Grid>
+
                 </form>
             </Grid>
         </Grid>
 
-        {
-            valueArr.map((item, key) => {
-                return (
-                    <div key={key}>
-                        <ol>
-                            <Card variant="outlined">{item.title}</Card>
-                            <Card variant="outlined">{item.description}</Card>
-                        </ol>
-                    </div>
-                    
-                )
-            }
-          )
-        }
-    
+        { valueData }
     </div>
     )
 }

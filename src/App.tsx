@@ -28,14 +28,10 @@ const App: React.FC = () => {
     items.push(inputValues);
     const newArr = [...items, ...valueArr];
     setValueArr(newArr);
-
     setInputValues({
       title: '',
       description: '',
     });
-
-    
-
   }
 
   return (
