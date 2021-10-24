@@ -1,4 +1,5 @@
 import React from 'react'
+import '../Form/Form.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -24,13 +25,13 @@ const Form: React.FC<IProps> = ({
     return (
         <div key={key}>
             <ol>
-                <Grid item xs={2}>
+                <Grid item xs={4}>
                     <Card variant="outlined">
-                        <div>
+                        <div className='card-container'>
                             <h2>Todo's</h2>
                             <p>{item.title}</p>
                             <p>{item.description}</p>
-                            <Button variant='outlined'>Remove</Button>
+                            <Button variant='outlined' color='error'>Remove</Button>
                         </div>
                     </Card>
                 </Grid>
@@ -45,7 +46,7 @@ return (
         <Grid container spacing={2}>
             <Grid item xs={10}>
                 <form onSubmit={handleSubmit}>
-                <Grid item xs={12}>
+                <Grid item xs={5}>
 
                     <TextField 
                         type='text'
@@ -70,7 +71,7 @@ return (
                         required
                         id='description'
                     />
-                    <Button variant='contained' type="submit">Add Todo</Button>
+                    <Button variant='contained' color="success" type="submit">Add Todo</Button>
                 </Grid>
 
                 </form>
