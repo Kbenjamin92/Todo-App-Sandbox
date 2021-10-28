@@ -1,9 +1,9 @@
 import React from 'react'
-import '../Form/Form.css';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
+import { makeStyles } from '@mui/styles';
 
 interface IProps {
     title: string | undefined;
@@ -15,71 +15,83 @@ interface IProps {
 
 const Form: React.FC<IProps> = ({ 
     title,
-    description,
+    description,  
     valueArr,
     handleChange,
     handleSubmit,
  }) => {
 
- const valueData = valueArr.map((item, key) => {
-    return (
-        <div key={key}>
-            <ol>
-                <Grid item xs={4}>
-                    <Card variant="outlined">
-                        <div className='card-container'>
-                            <h2>Todo's</h2>
-                            <p>{item.title}</p>
-                            <p>{item.description}</p>
-                            <Button variant='outlined' color='error'>Remove</Button>
-                        </div>
-                    </Card>
-                </Grid>
-            </ol>
-        </div>
-        )
-    }
-)
+    const useStyles = makeStyles((theme) => ({
+        addTodoBtn: { 
+            padding: '10px !important',
+        },
+        cardStyle: {
+            padding: '30px !important',
+        }
+    }));
+
+    const classes = useStyles();
+
+
+    const valueData = valueArr.map((item, key) => {
+        return (
+            <div key={key}>
+                <ol>
+                    <Grid item xs={4} direction='row'>
+                        <Card variant="outlined">
+                            <div className={classes.cardStyle}>
+                                <h2>{item.title}</h2>
+                                <hr/>
+                                <p>{item.description}</p>
+                                <Button variant='outlined' color='error'>Remove</Button>
+                            </div>
+                        </Card>
+                    </Grid>
+                </ol>
+            </div>
+            )
+        }
+    )
 
 return (
-    <div>
-        <Grid container spacing={2}>
-            <Grid item xs={10}>
-                <form onSubmit={handleSubmit}>
-                <Grid item xs={5}>
-
-                    <TextField 
-                        type='text'
-                        name='title'
-                        value={title}
-                        variant='filled'
-                        placeholder='Title...'
-                        onChange={handleChange}
-                        required
-                        id='title'
-                    />
-                </Grid>
-                <Grid item xs={12}>
-
-                    <TextField 
-                        type='text'
-                        name='description'
-                        variant='filled'
-                        value={description}
-                        placeholder='Description...'
-                        onChange={handleChange}
-                        required
-                        id='description'
-                    />
-                    <Button variant='contained' color="success" type="submit">Add Todo</Button>
-                </Grid>
-
-                </form>
+    <form onSubmit={handleSubmit}>
+        <Grid container spacing={3} direction='column'>
+            <Grid item xs={4}>
+                <TextField 
+                    type='text'
+                    name='title'
+                    value={title}
+                    variant='filled'
+                    placeholder='Title...'
+                    onChange={handleChange}
+                    required
+                    id='title'
+                />
+            </Grid>
+            <Grid item xs={4}>
+                <TextField 
+                    type='text'
+                    name='description'
+                    variant='filled'
+                    value={description}
+                    placeholder='Description...'
+                    onChange={handleChange}
+                    required
+                    id='description'
+                />
+            </Grid>
+            <Grid item xs={2}>
+                <Button 
+                    variant='contained' 
+                    color="success" 
+                    type="submit"
+                    className={classes.addTodoBtn}
+                >Add Todo</Button>
             </Grid>
         </Grid>
 
         { valueData }
-    </div>
+    </form>
     )
 }
  
